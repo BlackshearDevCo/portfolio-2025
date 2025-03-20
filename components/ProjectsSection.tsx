@@ -145,7 +145,7 @@ export function ProjectsSection() {
           </div>
         </div>
 
-        <div className="mx-auto flex justify-center -mt-16">
+        <div className="mx-auto flex justify-center -mt-8 md:-mt-16">
           <h2 className="text-3xl font-semibold">More coming soon!</h2>
         </div>
       </section>
