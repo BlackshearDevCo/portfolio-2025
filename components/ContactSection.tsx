@@ -60,13 +60,16 @@ export function ContactSection() {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("https://formspree.io/f/xblgdqbr", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formState),
-      });
+      const response = await fetch(
+        process.env.NEXT_PUBLIC_FORMSPREE_URL as string,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formState),
+        }
+      );
 
       if (response.ok) {
         setSubmitMessage("Thank you! Your message has been sent.");
