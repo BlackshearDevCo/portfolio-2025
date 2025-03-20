@@ -13,40 +13,38 @@ import Link from "next/link";
 import Image from "next/image";
 import { SectionTransition } from "@/components/SectionTransition";
 
-export function ProjectsSection() {
-  const projects = [
-    {
-      title: "E-commerce Platform",
-      description:
-        "A full-stack e-commerce platform with user authentication, product management, and payment processing.",
-      image: "/placeholder.svg?height=300&width=500",
-      tags: ["React", "Node.js", "MongoDB", "Stripe"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com",
-      status: "completed",
-    },
-    {
-      title: "Task Management App",
-      description:
-        "A collaborative task management application with real-time updates and team workspaces. Currently implementing the team collaboration features and finalizing the UI.",
-      image: "/placeholder.svg?height=300&width=500",
-      tags: ["Next.js", "TypeScript", "Prisma", "Tailwind CSS"],
-      githubUrl: "https://github.com",
-      progress: 70,
-      status: "in-progress",
-    },
-    {
-      title: "AI Content Generator",
-      description:
-        "An AI-powered application that generates content based on user prompts and preferences.",
-      image: "/placeholder.svg?height=300&width=500",
-      tags: ["Python", "Flask", "OpenAI API", "React"],
-      githubUrl: "https://github.com",
-      liveUrl: "https://example.com",
-      status: "completed",
-    },
-  ];
+const PROJECTS = [
+  {
+    title: "Discord Bots",
+    description:
+      "A lerna monorepo of a few discord bots I made to manage a server economy and allow users to bet on and race emojis!",
+    image: "/discord-bots.png?height=300&width=500",
+    tags: ["Node.js", "Typescript", "Lerna"],
+    githubUrl: "https://github.com/BlackshearDevCo/DiscordBots",
+    liveUrl: "",
+    status: "completed",
+  },
+  {
+    title: "Harvest Horizon",
+    description:
+      "A personal project game built in Godot with GDScript for a cozy farming game. My first game dev project to introduce me into the community.",
+    image: "/harvest-horizon.png?height=300&width=500",
+    tags: ["GDScript", "Git"],
+    githubUrl: "https://github.com/BlackshearDevCo/Harvest-Horizon",
+    status: "completed",
+  },
+  {
+    title: "My Portfolio",
+    description:
+      "My software developer portfolio! Showcasing my skills, experience, and recent projects.",
+    image: "/portfolio.png?height=300&width=500",
+    tags: ["React", "Next.js", "Tailwind CSS"],
+    githubUrl: "https://github.com/BlackshearDevCo/portfolio-2025",
+    status: "completed",
+  },
+];
 
+export function ProjectsSection() {
   return (
     <>
       <SectionTransition />
@@ -60,7 +58,7 @@ export function ProjectsSection() {
             </p>
           </div>
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project, index) => (
+            {PROJECTS.map((project, index) => (
               <Card
                 key={index}
                 className="overflow-hidden flex flex-col h-full border-purple-200 dark:border-purple-800 hover:shadow-md hover:shadow-purple-200 dark:hover:shadow-purple-900/30 transition-all"
@@ -120,11 +118,12 @@ export function ProjectsSection() {
                     </Link>
                   </Button>
 
-                  {project.status === "in-progress" ? (
+                  {project.status === "in-progress" && (
                     <div className="text-sm text-muted-foreground italic">
                       Coming soon
                     </div>
-                  ) : (
+                  )}
+                  {project.status === "completed" && project.liveUrl && (
                     <Button
                       size="sm"
                       className="bg-purple-600 hover:bg-purple-700"
@@ -144,6 +143,10 @@ export function ProjectsSection() {
               </Card>
             ))}
           </div>
+        </div>
+
+        <div className="mx-auto flex justify-center -mt-16">
+          <h2 className="text-3xl font-semibold">More coming soon!</h2>
         </div>
       </section>
       <SectionTransition reverse />
