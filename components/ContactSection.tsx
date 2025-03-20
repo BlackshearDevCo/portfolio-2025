@@ -16,6 +16,27 @@ import { Label } from "@/components/ui/Label";
 import { Textarea } from "@/components/ui/Textarea";
 import { Mail, MapPin, Phone } from "lucide-react";
 
+const CONTACT_INFO = [
+  {
+    icon: <Mail className="h-6 w-6 text-purple-600 dark:text-purple-400" />,
+    title: "Email",
+    value: "brooklynjblackshear@gmail.com",
+    link: "mailto:brooklynjblackshear@gmail.com",
+  },
+  {
+    icon: <Phone className="h-6 w-6 text-purple-600 dark:text-purple-400" />,
+    title: "Phone",
+    value: "+1 (432) 528-4570",
+    link: "tel:+14325284570",
+  },
+  {
+    icon: <MapPin className="h-6 w-6 text-purple-600 dark:text-purple-400" />,
+    title: "Location",
+    value: "Texas, USA",
+    link: null,
+  },
+];
+
 export function ContactSection() {
   const [formState, setFormState] = useState({
     name: "",
@@ -34,45 +55,32 @@ export function ContactSection() {
     setFormState((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitMessage(
-        "Thank you for your message! I'll get back to you soon."
-      );
-      setFormState({
-        name: "",
-        email: "",
-        subject: "",
-        message: "",
+    try {
+      const response = await fetch("https://formspree.io/f/xblgdqbr", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
       });
-    }, 1500);
-  };
 
-  const contactInfo = [
-    {
-      icon: <Mail className="h-6 w-6 text-purple-600 dark:text-purple-400" />,
-      title: "Email",
-      value: "john.doe@example.com",
-      link: "mailto:john.doe@example.com",
-    },
-    {
-      icon: <Phone className="h-6 w-6 text-purple-600 dark:text-purple-400" />,
-      title: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567",
-    },
-    {
-      icon: <MapPin className="h-6 w-6 text-purple-600 dark:text-purple-400" />,
-      title: "Location",
-      value: "San Francisco, CA",
-      link: null,
-    },
-  ];
+      if (response.ok) {
+        setSubmitMessage("Thank you! Your message has been sent.");
+        setFormState({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setSubmitMessage("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      setSubmitMessage("Error sending message.");
+      console.error(error);
+    }
+
+    setIsSubmitting(false);
+  };
 
   return (
     <section id="contact" className="section-container relative">
@@ -174,7 +182,7 @@ export function ContactSection() {
           </CardHeader>
           <CardContent className="pt-6">
             <div className="space-y-6">
-              {contactInfo.map((info, index) => (
+              {CONTACT_INFO.map((info, index) => (
                 <div key={index} className="flex items-start gap-4">
                   <div className="p-2 rounded-lg bg-purple-100 dark:bg-purple-900/30">
                     {info.icon}
@@ -214,7 +222,7 @@ export function ContactSection() {
                   asChild
                 >
                   <a
-                    href="https://github.com"
+                    href="https://github.com/BlackshearDevCo"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -239,7 +247,7 @@ export function ContactSection() {
                   asChild
                 >
                   <a
-                    href="https://linkedin.com"
+                    href="https://www.linkedin.com/in/brooklynblackshear/"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
@@ -256,31 +264,6 @@ export function ContactSection() {
                       <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                       <rect x="2" y="9" width="4" height="12"></rect>
                       <circle cx="4" cy="4" r="2"></circle>
-                    </svg>
-                  </a>
-                </Button>
-                <Button
-                  variant="outline"
-                  size="icon"
-                  className="border-purple-300 dark:border-purple-700 text-purple-700 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-900/30"
-                  asChild
-                >
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      className="h-5 w-5"
-                    >
-                      <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
                     </svg>
                   </a>
                 </Button>
