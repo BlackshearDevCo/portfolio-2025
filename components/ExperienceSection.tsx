@@ -8,47 +8,75 @@ import {
 import { Badge } from "@/components/ui/Badge";
 import { SectionTransition } from "@/components/SectionTransition";
 
-const experiences = [
+const EXPERIENCES = [
   {
-    title: "Senior Software Engineer",
-    company: "Tech Innovations Inc.",
-    period: "2021 - Present",
-    description:
-      "Lead the development of a microservices architecture for the company's flagship product. Mentored junior developers and implemented CI/CD pipelines.",
-    technologies: ["React", "Node.js", "AWS", "Docker", "Kubernetes"],
+    title: "Software Engineer",
+    company: "Autobooks",
+    period: "May 2023 - Jan 2024",
+    highlights: [
+      "Swiftly acquired proficiency in a new programming language, seamlessly integrating it into my workflow within a few weeks.",
+      "Successfully simplified and revamped a complex step in our on-boarding process increasing user conversions by over 50% while ensuring accessibility and mobile-friendliness.",
+      "Collaborated with cross-functional teams to redesign the Autobooks platform interface, incorporating user feedback to enhance usability and streamline navigation, resulting in a 15% increase in user engagement.",
+    ],
+    technologies: ["React", "Rescript", "Typescript", "Material UI"],
   },
   {
     title: "Software Engineer",
-    company: "Digital Solutions Ltd.",
-    period: "2018 - 2021",
-    description:
-      "Developed and maintained multiple web applications. Collaborated with cross-functional teams to deliver high-quality software solutions.",
-    technologies: ["JavaScript", "TypeScript", "React", "Express", "MongoDB"],
+    company: "Office Hours",
+    period: "May 2022 - Feb 2023",
+    highlights: [
+      "Developed new client-facing features to enhance connectivity between clients and knowledge professionals.",
+      "Enhanced internal tools to streamline workflows for the client sales team, contributing to 40% increased efficiency.",
+      "Worked closely with a dedicated team to iteratively improve the Office Hours platform by gathering user feedback, implementing new features, conducting rigorous testing, and ensuring timely updates, leading to a 20% increase in user satisfaction.",
+    ],
+    technologies: [
+      "React",
+      "Next.js",
+      "TailwindCSS",
+      "SWR",
+      "Nest.js",
+      "MongoDB",
+      "Jest / React Testing Library",
+      "Vercel",
+      "GitHub Actions",
+    ],
   },
   {
-    title: "Junior Developer",
-    company: "StartUp Ventures",
-    period: "2016 - 2018",
-    description:
-      "Assisted in the development of web applications. Participated in code reviews and implemented new features based on client requirements.",
-    technologies: ["HTML/CSS", "JavaScript", "PHP", "MySQL"],
+    title: "Frontend Developer",
+    company: "CrateBind",
+    period: "Jul 2018 - May 2022",
+    highlights: [
+      "Spearheaded the optimization of DestinFlorida.com's SEO strategy, resulting in its ascent to the #1 spot search result for the Destin, FL region.",
+      "Improved performance for the DestinFlorida.com site by 88%, bringing the average load speed from 13 seconds down to just 1.5 seconds.",
+      "Led a dynamic development team and engaged directly with clients on a daily basis, overseeing both the public-facing DestinFlorida.com platform and their internal owner portal.",
+    ],
+    technologies: [
+      "React.js",
+      "Next.js",
+      "Typescript",
+      "Javascript",
+      "TailwindCSS",
+      "Styled Components",
+      "Node.js",
+      "Ruby",
+      "GraphQL",
+      "Prisma",
+      "Jest / React Testing Library",
+    ],
   },
 ];
 
-const education = [
+const EDUCATION = [
   {
-    degree: "Master of Science in Computer Science",
-    institution: "Tech University",
-    period: "2014 - 2016",
-    description:
-      "Specialized in Software Engineering and Artificial Intelligence.",
-  },
-  {
-    degree: "Bachelor of Science in Computer Science",
-    institution: "State University",
-    period: "2010 - 2014",
-    description:
-      "Graduated with honors. Participated in multiple hackathons and coding competitions.",
+    degree: "Full Stack Javascript Web Development",
+    institution: "DevMountain",
+    period: "Mar 2018 - Jun 2018",
+    highlights: [
+      "Created personal project, ConnectDevs. A social media dedicated to software engineers, which won the Best Overall Project award, judged by the instructors and mentors.",
+      "Graduated at the top of my cohort, helping mentor others and assist in project work along the way to get their certification.",
+      "Collaborated with fellow students to build our team project, WishTrip, over 3 weeks which was presented at the end of the cohort.",
+      "Learned Fullstack Javscript development within the span of 12 weeks ranging from technologies like React, Node.js, Express.js, PostgreSQL, React Testing Library, and more.",
+    ],
   },
 ];
 
@@ -71,7 +99,7 @@ export function ExperienceSection() {
                 Work Experience
               </h3>
               <div className="space-y-6">
-                {experiences.map((exp, index) => (
+                {EXPERIENCES.map((exp, index) => (
                   <Card
                     key={index}
                     className="border-purple-200 dark:border-purple-800 hover:shadow-md hover:shadow-purple-200 dark:hover:shadow-purple-900/30 transition-all"
@@ -93,7 +121,13 @@ export function ExperienceSection() {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-4">
-                      <p className="mb-4">{exp.description}</p>
+                      <ul className="list-disc pl-4">
+                        {exp.highlights.map((highlight, ind) => (
+                          <li key={ind}>
+                            <p className="mb-4">{highlight}</p>
+                          </li>
+                        ))}
+                      </ul>
                       <div className="flex flex-wrap gap-2">
                         {exp.technologies.map((tech) => (
                           <Badge
@@ -115,7 +149,7 @@ export function ExperienceSection() {
                 Education
               </h3>
               <div className="space-y-6">
-                {education.map((edu, index) => (
+                {EDUCATION.map((edu, index) => (
                   <Card
                     key={index}
                     className="border-purple-200 dark:border-purple-800 hover:shadow-md hover:shadow-purple-200 dark:hover:shadow-purple-900/30 transition-all"
@@ -137,7 +171,13 @@ export function ExperienceSection() {
                       </div>
                     </CardHeader>
                     <CardContent className="pt-4">
-                      <p>{edu.description}</p>
+                      <ul className="list-disc pl-4">
+                        {edu.highlights.map((highlight, ind) => (
+                          <li key={ind}>
+                            <p className="mb-4">{highlight}</p>
+                          </li>
+                        ))}
+                      </ul>
                     </CardContent>
                   </Card>
                 ))}

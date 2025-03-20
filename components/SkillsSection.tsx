@@ -11,13 +11,21 @@ const SKILL_CATEGORIES = [
       "TypeScript",
       "JavaScript",
       "TailwindCSS",
-      "Apollo / SWR",
+      "SWR",
+      "Apollo",
     ],
   },
   {
     title: "Backend Development",
     icon: <Server className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
-    skills: ["Node.js", "Express", "Python", "Ruby", "RESTful APIs", "GraphQL"],
+    skills: [
+      "Node.js",
+      "Express",
+      "Nest.js",
+      "Ruby",
+      "RESTful APIs",
+      "GraphQL",
+    ],
   },
   {
     title: "Database",
