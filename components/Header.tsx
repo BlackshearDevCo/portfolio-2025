@@ -51,14 +51,14 @@ export function Header() {
             </div>
 
             {isMenuOpen && (
-              <div className="fixed inset-0 top-16 z-50 bg-background">
-                <div className="container py-4">
+              <div className="fixed inset-0 top-16 z-50">
+                <div className="container py-4 bg-background">
                   <nav className="flex flex-col space-y-4">
                     {navItems.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="text-lg font-medium text-foreground hover:text-primary"
+                        className="text-lg font-medium px-6 text-foreground hover:text-primary"
                         onClick={() => setIsMenuOpen(false)}
                       >
                         {item.name}
