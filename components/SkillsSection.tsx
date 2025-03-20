@@ -1,72 +1,60 @@
 import { Card, CardContent } from "@/components/ui/Card";
-import {
-  Code,
-  Database,
-  Globe,
-  Layout,
-  Server,
-  Smartphone,
-} from "lucide-react";
+import { Boxes, Code, Database, Globe, Layout, Server } from "lucide-react";
+
+const SKILL_CATEGORIES = [
+  {
+    title: "Frontend Development",
+    icon: <Layout className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
+    skills: [
+      "Next.js",
+      "React.js",
+      "TypeScript",
+      "JavaScript",
+      "TailwindCSS",
+      "Apollo / SWR",
+    ],
+  },
+  {
+    title: "Backend Development",
+    icon: <Server className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
+    skills: ["Node.js", "Express", "Python", "Ruby", "RESTful APIs", "GraphQL"],
+  },
+  {
+    title: "Database",
+    icon: <Database className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
+    skills: ["MongoDB", "Supabase", "PostgreSQL", "Prisma"],
+  },
+  {
+    title: "DevOps & Tools",
+    icon: <Code className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
+    skills: ["Git", "Docker", "CI/CD", "Vercel", "GitHub Actions"],
+  },
+  {
+    title: "Other",
+    icon: <Globe className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
+    skills: [
+      "Cypress",
+      "Jest / React Testing Library",
+      "Fullstory",
+      "JWT / OAuth",
+      "UI/UX Design",
+    ],
+  },
+  {
+    title: "Misc",
+    icon: <Boxes className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
+    skills: [
+      "Performance Optimization",
+      "Responsive Web Design",
+      "Progressive Web Apps",
+      "SEO Optimization",
+      "Leading Development Teams",
+      "Agile Development",
+    ],
+  },
+];
 
 export function SkillsSection() {
-  const skillCategories = [
-    {
-      title: "Frontend Development",
-      icon: <Layout className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
-      skills: [
-        "React",
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "HTML/CSS",
-        "JavaScript",
-      ],
-    },
-    {
-      title: "Backend Development",
-      icon: <Server className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
-      skills: ["Node.js", "Express", "Python", "Django", "Java", "Spring Boot"],
-    },
-    {
-      title: "Database",
-      icon: (
-        <Database className="h-8 w-8 text-purple-600 dark:text-purple-400" />
-      ),
-      skills: ["MongoDB", "PostgreSQL", "MySQL", "Redis", "Firebase", "Prisma"],
-    },
-    {
-      title: "Mobile Development",
-      icon: (
-        <Smartphone className="h-8 w-8 text-purple-600 dark:text-purple-400" />
-      ),
-      skills: [
-        "React Native",
-        "Flutter",
-        "Swift",
-        "Kotlin",
-        "Expo",
-        "Mobile UI/UX",
-      ],
-    },
-    {
-      title: "DevOps & Tools",
-      icon: <Code className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
-      skills: ["Git", "Docker", "CI/CD", "AWS", "Vercel", "GitHub Actions"],
-    },
-    {
-      title: "Other",
-      icon: <Globe className="h-8 w-8 text-purple-600 dark:text-purple-400" />,
-      skills: [
-        "RESTful APIs",
-        "GraphQL",
-        "Testing",
-        "Agile",
-        "UI/UX Design",
-        "Performance Optimization",
-      ],
-    },
-  ];
-
   return (
     <section id="skills" className="section-container">
       <div className="text-center">
@@ -77,7 +65,7 @@ export function SkillsSection() {
         </p>
       </div>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        {skillCategories.map((category, index) => (
+        {SKILL_CATEGORIES.map((category, index) => (
           <Card
             key={index}
             className="overflow-hidden border-purple-200 dark:border-purple-800 hover:shadow-md hover:shadow-purple-200 dark:hover:shadow-purple-900/30 transition-all"
