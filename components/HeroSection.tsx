@@ -5,14 +5,46 @@ import { Button } from "@/components/ui/Button";
 import { ArrowRight, Github, Linkedin, Mail } from "lucide-react";
 import Link from "next/link";
 
+const INITIAL_TITLES = [
+  {
+    id: 1,
+    text: "Software Engineer",
+    visible: true,
+    exiting: false,
+    entering: false,
+  },
+  {
+    id: 2,
+    text: "Frontend Developer",
+    visible: false,
+    exiting: false,
+    entering: false,
+  },
+  {
+    id: 3,
+    text: "Full-stack Engineer",
+    visible: false,
+    exiting: false,
+    entering: false,
+  },
+  {
+    id: 4,
+    text: "UI/UX Enthusiast",
+    visible: false,
+    exiting: false,
+    entering: false,
+  },
+  {
+    id: 5,
+    text: "React Specialist",
+    visible: false,
+    exiting: false,
+    entering: false,
+  },
+];
+
 export function HeroSection() {
-  const [titles, setTitles] = useState([
-    { id: 1, text: "Software Engineer", visible: true, exiting: false },
-    { id: 2, text: "Frontend Developer", visible: false, exiting: false },
-    { id: 3, text: "Full-stack Engineer", visible: false, exiting: false },
-    { id: 4, text: "UI/UX Enthusiast", visible: false, exiting: false },
-    { id: 5, text: "React Specialist", visible: false, exiting: false },
-  ]);
+  const [titles, setTitles] = useState(INITIAL_TITLES);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -23,9 +55,8 @@ export function HeroSection() {
 
         // Create a new array with the current title exiting
         const updatedTitles = currentTitles.map((title, index) => {
-          if (index === visibleIndex) {
-            return { ...title, exiting: true };
-          }
+          if (index === visibleIndex) return { ...title, exiting: true };
+          if (index === nextIndex) return { ...title, entering: true };
           return title;
         });
 
@@ -37,7 +68,7 @@ export function HeroSection() {
                 return { ...title, visible: false, exiting: false };
               }
               if (index === nextIndex) {
-                return { ...title, visible: true };
+                return { ...title, visible: true, entering: false };
               }
               return title;
             });
@@ -58,11 +89,15 @@ export function HeroSection() {
       <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-700/20 rounded-full blur-3xl"></div>
 
       <div className="flex flex-col items-center text-center relative z-10">
-        <div className="inline-block mb-6 px-6 py-2 bg-purple-100 dark:bg-purple-900/30 rounded-full">
+        <div className="inline-block mb-6 px-6 py-2 bg-purple-100 dark:bg-purple-900/30 rounded-full overflow-hidden">
           <div className="relative h-6 w-[160px]">
-            {titles.map(
-              (title) =>
-                title.visible && (
+            {titles.map((title, ind) => {
+              if (!title.visible) return null;
+
+              const upcomingTitle = titles[ind + 1] ?? titles[0];
+
+              return (
+                <div key={title.id}>
                   <span
                     key={title.id}
                     className={`text-purple-800 dark:text-purple-300 font-medium absolute inset-0 flex items-center justify-center transition-all duration-500 ${
@@ -73,13 +108,24 @@ export function HeroSection() {
                   >
                     {title.text}
                   </span>
-                )
-            )}
+
+                  <span
+                    className={`text-purple-800 dark:text-purple-300 font-medium absolute inset-0 flex items-center justify-center transition-all duration-500 ${
+                      upcomingTitle.entering
+                        ? "opacity-100 transform translate-y-0"
+                        : "opacity-0 transform translate-y-4"
+                    }`}
+                  >
+                    {upcomingTitle.text}
+                  </span>
+                </div>
+              );
+            })}
           </div>
         </div>
         <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl md:text-6xl">
-          <span className="block">Hi, I&apos;m </span>
-          <span className="block bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
+          <span className="block">Hi, I&apos;m</span>
+          <span className="block leading-[1.2] bg-gradient-to-r from-purple-600 to-purple-800 bg-clip-text text-transparent">
             Brooklyn Blackshear
           </span>
         </h1>
@@ -104,7 +150,7 @@ export function HeroSection() {
         </div>
         <div className="mt-8 flex space-x-6">
           <Link
-            href="https://github.com"
+            href="https://github.com/BlackshearDevCo"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
@@ -113,7 +159,7 @@ export function HeroSection() {
             <span className="sr-only">GitHub</span>
           </Link>
           <Link
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/brooklynblackshear/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-muted-foreground hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
@@ -122,7 +168,7 @@ export function HeroSection() {
             <span className="sr-only">LinkedIn</span>
           </Link>
           <Link
-            href="mailto:example@example.com"
+            href="mailto:brooklynjblackshear@gmail.com"
             className="text-muted-foreground hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
           >
             <Mail className="h-6 w-6" />
