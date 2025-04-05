@@ -34,13 +34,14 @@ const PROJECTS = [
     status: "completed",
   },
   {
-    title: "My Portfolio",
+    title: "API Explorer",
     description:
-      "My software developer portfolio! Showcasing my skills, experience, and recent projects.",
-    image: "/portfolio.png?height=300&width=500",
+      "A sleek, frontend-only tool for making and testing HTTP requests. Build custom API calls and view live responses in a modern UI—no backend required.",
+    image: "/api-explorer.png?height=300&width=500",
     tags: ["React", "Next.js", "Tailwind CSS"],
-    githubUrl: "https://github.com/BlackshearDevCo/portfolio-2025",
+    githubUrl: "https://github.com/BlackshearDevCo/ApiExplorer",
     status: "completed",
+    liveUrl: "https://api-explorer.vercel.app/",
   },
 ];
 
